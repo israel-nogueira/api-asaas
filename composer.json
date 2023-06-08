@@ -1,0 +1,18 @@
+{
+    "name": "israel-nogueira/asaas",
+    "description": "Api de integração a plataforma asaas",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "IsraelNogueira\\Asaas\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Israel Nogueira",
+            "email": "israel@feats.com.br"
+        }
+    ],
+    "require": {}
+}
