@@ -131,15 +131,49 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
     // Faça o que quiser agora com os retornos da API:
     meu_sistema::cadastra_nova_cobranca( $nova_cobranca );
 
+
+
+	/*
+	|-------------------------------------------------
+	|	RECUPERANDO MINHA WALLET
+	|-------------------------------------------------
+	*/
+		$MY_WALLET = asaas::getWallet()
+		print_r($MY_WALLET);
+
+
 ?>
 ```
-## CADASTRANDO UM NOVO CLIENTE
+## CLIENTES
 ```php
  <?
     include "vendor\autoload.php";
     use IsraelNogueira\Asaas\asaas;
     use lib\cors\meu_sistema;
 
+
+	/*
+	|-------------------------------------------------
+	|	LISTA DE CLIENTES
+	|-------------------------------------------------
+	*/
+		$_LISTA = asaas::listaCliente()
+		print_r($_LISTA);
+
+	/*
+	|-------------------------------------------------
+	|	RETORNA DETALHES DO CLIENTE
+	|-------------------------------------------------
+	*/
+		$_DETALHES_ = asaas::getCliente($UID_CLIENTE);
+		print_r($_DETALHES_);
+
+
+	/*
+	|-------------------------------------------------
+	|	CRIAR NOVO CLIENTE
+	|-------------------------------------------------
+	*/
     $novo_cliente   = asaas::novoCliente([
                         'name'=>'José de Abreu',
                         'email'=>'jose@feats.com.br',
@@ -157,9 +191,30 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
                         'observations'=>'',
                     ])
 
-    // Faça o que quiser agora com os retornos da API:
-    meu_sistema::cadastra_novo_cliente( $novo_cliente );
+	/*
+	|-------------------------------------------------
+	|	DETELA UM CLIENTE
+	|-------------------------------------------------
+	*/
+		asaas::deleteCliente($UID_CLIENTE);
 
+	/*
+	|-------------------------------------------------
+	|	ALTERA DADOS DE UM CLIENTE
+	|-------------------------------------------------
+	|
+	|	Ali eu altero apenas o email, porém todos os dados 
+	|	que foram usados na criação do cliente poderão ser
+	|	inseridos na array no 2º parametro para serem atualizados
+	|
+	*/
+		asaas::updateCliente($UID_CLIENTE,['email'=>'user@exemplo.com']);
+
+
+		
+
+
+								
 
 ```
 
@@ -188,6 +243,12 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
 
     // Faça o que quiser agora com os retornos da API:
     meu_sistema::atualiza_cadastro( $novo_cliente );
+
+
+```
+
+## SUB-CLIENTES
+```php
 
 
 ```
@@ -304,15 +365,10 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
 		"customer"=> $UID_CLIENTE, // Uid do cliente 
 		"externalReference"=> "2345", // Referencia externa do seu sistema
 		"split"=>[
-			/*
-			walletId:	Identificador da carteira (retornado no momento da criação da conta)
-			fixedValue:	Valor fixo a ser transferido para a conta quando a cobrança for recebida
-			percentualValue: % sobre o valor líquido da cobrança a ser transferido quando for recebida 
-			*/
 			[
-				'walletId'=>'',
-				'fixedValue'=>'',
-				'percentualValue'=>'',
+				'walletId'=>'',// Wallet de quem receberá
+				'fixedValue'=>'',// valor
+				'percentualValue'=>'',// % sobre o valor líquido da cobrança
 			],
 			[
 				'walletId'=>'',
@@ -339,6 +395,50 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
 			"value"=> 2 //% de juros ao mês sobre o valor da cobrança para pagamento após o vencimento
 		]
 	])
+
+
+
+	/*
+	|-------------------------------------------------
+	|	ATUALIZA UMA ASSINATURA
+	|-------------------------------------------------
+	*/
+		asaas::updateAssinatura($ID_ASSINATURA, [
+			"billingType" => "BOLETO", // BOLETO | CREDIT_CARD | PIX |  UNDEFINED
+			"nextDueDate" => "2017-06-15", // Vencimento da próxima mensalidade a ser gerada
+			"value" => 29.9, // VALOR
+			"cycle" => "MONTHLY", // WEEKLY (Semanal) | BIWEEKLY (Quinzenal) | MONTHLY (Mensal) | QUARTERLY (Trimestral) | SEMIANNUALLY (Semestral) | YEARLY (Anual)
+			"description" => "Assinatura Plano Pró",
+			"updatePendingPayments" => true, //true para atualizar mensalidades já existentes com o novo valor ou forma de pagamento
+			"discount" => [
+				"value" => 10, //Valor percentual ou fixo de desconto
+				"type" => "FIXED", // PERCENTAGE | FIXED
+				"dueDateLimitDays" => 0, // Dias antes do vencimento para aplicar desconto
+			],
+			"fine" => [
+				"value" => 1, // VALOR de multa sobre o valor da cobrança para pagamento após o vencimento
+				"type" => "FIXED", // PERCENTAGE | FIXED
+			],
+			"interest" => [
+				"value" => 2, //% de juros ao mês sobre o valor da cobrança para pagamento após o vencimento
+			],
+		]);
+
+
+
+	/*
+	|-------------------------------------------------
+	|	ATUALIZA UMA ASSINATURA
+	|-------------------------------------------------
+	*/
+		asaas::deleteAssinatura($ID_ASSINATURA);
+
+
+
+
+
+
+
 
 
 
