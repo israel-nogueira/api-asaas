@@ -53,18 +53,18 @@ GERANDO UMA COBRANÇA
         "value"=> 100,                      // Valor
         "description"=> "Pedido 056984",    // Descrição
         "externalReference"=> "056984",     // Referência externa do seu sistema
-		"discount"=> [
-			"dueDateLimitDays"=> 12,        //  Dias antes do vencimento para aplicar desconto.
-			"type"=> "FIXED",               //  PERCENTAGE | FIXED
-			"value"=> 10,                   //  Valor percentual ou fixo de desconto a ser aplicado sobre o valor da cobrança
-		],
-		"fine"=> [
-			"value"=> 1,                    // VALOR de multa sobre o valor da cobrança para pagamento após o vencimento
-			"type"=> "FIXED"                // PERCENTAGE | FIXED
-		],
-		"interest"=> [
-			"value"=> 2                     //% de juros ao mês sobre o valor da cobrança para pagamento após o vencimento
-		],
+        "discount"=> [
+            "dueDateLimitDays"=> 12,        //  Dias antes do vencimento para aplicar desconto.
+            "type"=> "FIXED",               //  PERCENTAGE | FIXED
+            "value"=> 10,                   //  Valor percentual ou fixo de desconto a ser aplicado sobre o valor da cobrança
+        ],
+        "fine"=> [
+            "value"=> 1,                    // VALOR de multa sobre o valor da cobrança para pagamento após o vencimento
+            "type"=> "FIXED"                // PERCENTAGE | FIXED
+        ],
+        "interest"=> [
+            "value"=> 2                     //% de juros ao mês sobre o valor da cobrança para pagamento após o vencimento
+        ],
         "postalService"=> false,
 
         /*
@@ -73,7 +73,7 @@ GERANDO UMA COBRANÇA
         |------------------------------------------------------------------
         */
         "creditCardToken"=> "76496073-536f-4835-80db-c45d00f33695",
-        "remoteIp"=> "116.213.42.532"
+        "remoteIp"=> "116.213.42.532",
 
         /*
         |------------------------------------------------------------------
