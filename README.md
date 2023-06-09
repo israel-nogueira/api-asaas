@@ -220,12 +220,12 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
     |-------------------------------------------------
     */
     $_RETORNO = asaas::novaSubConta([
-                    "name"			=>"Nome Completo Do Cliente",
-                    "email"			=>"myaccount@example.com",
+                    "name"		=>"Nome Completo Do Cliente",
+                    "email"		=>"myaccount@example.com",
                     "cpfCnpj"		=>"15571534000145",
                     "birthDate"		=>"2012-05-04",
                     "companyType"	=>"LIMITED",//MEI | LIMITED | INDIVIDUAL | ASSOCIATION
-                    "phone"			=>"",
+                    "phone"		=>"",
                     "mobilePhone"	=>"45 9 9354 4738",
                     "address"		=>"Rua das Laranjeiras",
                     "addressNumber"	=>"41",
@@ -244,44 +244,44 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
     use IsraelNogueira\Asaas\asaas;
     use lib\cors\meu_sistema;
 
-    /*
-    |-------------------------------------------------
-    | 	GERAR CARNÊ DE ASSINATURA
-    |-------------------------------------------------
+	/*
+	|-------------------------------------------------
+	| 	GERAR CARNÊ DE ASSINATURA
+	|-------------------------------------------------
 	|	Para gerar os carnês gerados a partir de uma assinatura em formato PDF, 
 	|	é necessário que você tenha o ID da assinatura retornado pelo Asaas.
 	|
-    */
+	*/
 	header("Content-Type: application/pdf");
 	die(asaas::getCarneAssinatura($_ID,['month'=>3,'year'=>2023]));
 
-    /*
-    |-------------------------------------------------
-    | LISTAR COBRANÇAS DE UMA ASSINATURA
-    |-------------------------------------------------
+	/*
+	|-------------------------------------------------
+	| LISTAR COBRANÇAS DE UMA ASSINATURA
+	|-------------------------------------------------
 	|	Para listar as cobranças geradas a partir de uma assinatura.
-    */
+	*/
   
  	$_LISTA = asaas::listaCobrancaAssinatura($_ID);
 
 
-    /*
-    |-------------------------------------------------
-    | RETORNA DADOS DE UMA ASSINATURA
-    |-------------------------------------------------
-    */
+	/*
+	|-------------------------------------------------
+	| RETORNA DADOS DE UMA ASSINATURA
+	|-------------------------------------------------
+	*/
 
 	$_DADOS = asaas::getAssinatura($_ID);
 
 
-    /*
-    |-------------------------------------------------
-    | LISTAR ASSINATURAS
-    |-------------------------------------------------
+	/*
+	|-------------------------------------------------
+	| LISTAR ASSINATURAS
+	|-------------------------------------------------
 	|	Diferente da recuperação de uma assinatura específica, 
 	|	este método retorna uma lista paginada com todas 
 	|	as assinaturas para os filtros informados
-    */
+	*/
 	$_LISTA = 	asaas::listaAssinaturas([
 					'customer'=>null, 			//FILTRAR PELO IDENTIFICADOR ÚNICO DO CLIENTE
 					'billingType'=>null,		//FILTRAR POR FORMA DE PAGAMENTO
@@ -291,22 +291,22 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
 					'externalReference'=>null,	//FILTRAR PELO IDENTIFICADOR DO SEU SISTEMA
 				])
 
-    /*
-    |-------------------------------------------------
-    |	CRIAR NOVA ASSINATURA
-    |-------------------------------------------------
+	/*
+	|-------------------------------------------------
+	|	CRIAR NOVA ASSINATURA
+	|-------------------------------------------------
 	|	Ao criar a assinatura a primeira mensalidade será 
 	|	gerada vencendo na data enviada no parâmetro nextDueDate.
 	|
-    */
+	*/
 
 	asaas::novaAssinatura([
 		"customer"=> $UID_CLIENTE, // Uid do cliente 
 		"externalReference"=> "2345", // Referencia externa do seu sistema
 		"split"=>[
 			/*
-			walletId: 		Identificador da carteira (retornado no momento da criação da conta)
-			fixedValue: 	Valor fixo a ser transferido para a conta quando a cobrança for recebida
+			walletId:	Identificador da carteira (retornado no momento da criação da conta)
+			fixedValue:	Valor fixo a ser transferido para a conta quando a cobrança for recebida
 			percentualValue: % sobre o valor líquido da cobrança a ser transferido quando for recebida 
 			*/
 			[
@@ -323,7 +323,7 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
 		"maxPayments"=> 7, //Número máximo de mensalidades a serem geradas para esta assinatura
 		"billingType"=> "PIX",//BOLETO | CREDIT_CARD | PIX |  UNDEFINED
 		"nextDueDate"=> "2023-02-28", //Vencimento da 1ª mensalidade
-		"value"=> 19.9,
+		"value"=> 19.9, // VALOR
 		"cycle"=> "WEEKLY", // WEEKLY (Semanal) | BIWEEKLY (Quinzenal) | MONTHLY (Mensal) | QUARTERLY (Trimestral) | SEMIANNUALLY (Semestral) | YEARLY (Anual)
 		"description"=> "Assinatura Plano Pró",
 		"discount"=> [
