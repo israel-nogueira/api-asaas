@@ -70,9 +70,9 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
 
 <?php
     include "vendor\autoload.php";
-	use IsraelNogueira\Asaas\asaas;
+    use IsraelNogueira\Asaas\asaas;
     use lib\cors\meu_sistema;
-    
+
     $nova_cobranca = asaas::novaCobranca([
         "customer"=> "cus_000005158308",    // Esse dado vem no cadastro do usuario
         "billingType"=> "BOLETO",           // BOLETO | CREDIT_CARD | PIX |  UNDEFINED
@@ -137,8 +137,8 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
 ```php
  <?
     include "vendor\autoload.php";
-	use IsraelNogueira\Asaas\asaas;
-	use lib\cors\meu_sistema;
+    use IsraelNogueira\Asaas\asaas;
+    use lib\cors\meu_sistema;
 
     $novo_cliente   = asaas::novoCliente([
                         'name'=>'José de Abreu',
