@@ -22,8 +22,11 @@
     <a href="https://packagist.org/packages/israel-nogueira/api-asaas"><img src="https://poser.pugx.org/israel-nogueira/api-asaas/license.svg"></a>
 </p>
 
-Esta é uma classe super simples dos serviços ASAAS.<br>
-Sem fru-fru, apenas o que realmente é útil em um sistema/website.<br/>
+<p align="center">
+    Esta é uma classe super simples dos serviços ASAAS.<br>
+    Sem fru-fru, apenas o que realmente é útil em um sistema/website.<br/>
+</p>
+
 
 
 ## Instalação
