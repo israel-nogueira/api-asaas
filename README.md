@@ -17,14 +17,15 @@
     <a href="#processa-uma-imagem" target="_Self"> uma imagens</a> |
 </p>
 <p align="center">
-    <a href="https://packagist.org/packages/israel-nogueira/sweet-thumb">
-        <img src="https://poser.pugx.org/israel-nogueira/sweet-thumb/v/stable.svg">
+    <a href="https://packagist.org/packages/israel-nogueira/api-asaas">
+        <img src="https://poser.pugx.org/israel-nogueira/api-asaas/v/stable.svg">
     </a>
-    <a href="https://packagist.org/packages/israel-nogueira/sweet-thumb"><img src="https://poser.pugx.org/israel-nogueira/sweet-thumb/downloads"></a>
-    <a href="https://packagist.org/packages/israel-nogueira/sweet-thumb"><img src="https://poser.pugx.org/israel-nogueira/sweet-thumb/license.svg"></a>
+    <a href="https://packagist.org/packages/israel-nogueira/api-asaas"><img src="https://poser.pugx.org/israel-nogueira/api-asaas/downloads"></a>
+    <a href="https://packagist.org/packages/israel-nogueira/api-asaas"><img src="https://poser.pugx.org/israel-nogueira/api-asaas/license.svg"></a>
 </p>
 
-Esta é uma super classe super simples para criação de miniaturas. Sem fru-fru, apenas o que realmente é útil em um sistema/website.<br/>
+Esta é uma classe super simples dos serviços ASAAS.<br>
+Sem fru-fru, apenas o que realmente é útil em um sistema/website.<br/>
 
 
 ## Instalação
@@ -32,7 +33,7 @@ Esta é uma super classe super simples para criação de miniaturas. Sem fru-fru
 Instale via composer.
 
 ```plaintext
-    composer require israel-nogueira/sweet-thumb
+    composer require israel-nogueira/api-asaas
 ```
 
 ## EXEMPLOS DE USO<br/>
@@ -81,25 +82,25 @@ Crop simples de uma imagem
 ```sweet::crop('avatar.png',[100,100,100],true,true);```<br> 
 Cropa a imagem no formato que você definir:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/97c5a70ea82f0d22d27198dfaa4ce0b70c548c6d/src/01.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/97c5a70ea82f0d22d27198dfaa4ce0b70c548c6d/src/01.png"/>
 </p>
 
 ```sweet::crop('avatar.png',[0,100,100],false,true);```<br> 
 Redimencionará a altura para 100px e a largura proporcional:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/97c5a70ea82f0d22d27198dfaa4ce0b70c548c6d/src/02.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/97c5a70ea82f0d22d27198dfaa4ce0b70c548c6d/src/02.png"/>
 </p>
 
 ```sweet::crop('avatar.png',[100,0,100],false,true);```<br>
 Redimencionará a largura para 100px e a altura proporcional:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/97c5a70ea82f0d22d27198dfaa4ce0b70c548c6d/src/03.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/97c5a70ea82f0d22d27198dfaa4ce0b70c548c6d/src/03.png"/>
 </p>
 
 ```sweet::crop('avatar.png',[100,100,100],true,false);```<br>
 Cropa a imagem no formato que você definir porém sem redimencionar a imagm:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/8af8abdf61d90d31ed4f82bcf2f96c9143cee472/src/04.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/8af8abdf61d90d31ed4f82bcf2f96c9143cee472/src/04.png"/>
 </p>
 
 ## CONVERSÃO DE ARQUIVOS<br/>
@@ -179,7 +180,7 @@ Cropa e retorna uma thumb redonda
 ```
 Este exemplo resultará em:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/f26033179b54e7cedf63495a4667b0c24bef2388/src/05.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/f26033179b54e7cedf63495a4667b0c24bef2388/src/05.png"/>
 </p>
 
 
@@ -334,8 +335,8 @@ Que nos resultará em:
 
 Que visualmente é ficaria assim:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/4c18ac22d4e8f53d21e06f065b41ba0135998c00/src/06.jpg"/><br>
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/4c18ac22d4e8f53d21e06f065b41ba0135998c00/src/06.jpg"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/4c18ac22d4e8f53d21e06f065b41ba0135998c00/src/06.jpg"/><br>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/4c18ac22d4e8f53d21e06f065b41ba0135998c00/src/06.jpg"/>
 </p>
 
 ## PLACEHOLDER BLUR DE UMA IMAGEM<br/>
@@ -361,7 +362,7 @@ Tambem um placeholder mais simples, com apenas a cor predominante com o sufixo `
 ```
 Que visualmente é ficaria assim:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/64a67b00198722fc30c3acd013bc3baffeba5e62/src/07.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/64a67b00198722fc30c3acd013bc3baffeba5e62/src/07.png"/>
 </p>
 
 ## ADD TEXTO POR CIMA DE UMA IMAGEM<br/>
@@ -394,7 +395,7 @@ Veja como é simples adicionar um texto sob uma imagem;<br>
 ```
 Que visualmente é ficaria assim:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/65d8511a15a8a189ccbdf6a8909bd77e254efdcc/src/08.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/65d8511a15a8a189ccbdf6a8909bd77e254efdcc/src/08.png"/>
 </p>
 
 
@@ -425,7 +426,7 @@ Com essa função poderemos mesclar imagens programaticamente;
 ```
 Que visualmente é ficaria assim:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/9eac847243714507fe2be59176ef53a621d2e5a5/src/09.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/9eac847243714507fe2be59176ef53a621d2e5a5/src/09.png"/>
 </p>
 
 
@@ -456,7 +457,7 @@ Podemos utilizar essa função para gerar vários formatos de uma só imagem;
 ```
 Que visualmente é ficaria assim:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/290adc84d05d5c0e068730ea6e8dbeff9537cb30/src/11.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/290adc84d05d5c0e068730ea6e8dbeff9537cb30/src/11.png"/>
 </p>
 
 Caso não queira dar um bnome pra imagem, será gerado uma HASH randômica;
@@ -484,5 +485,5 @@ Caso não queira dar um bnome pra imagem, será gerado uma HASH randômica;
 ```
 Que visualmente é ficaria assim:
 <p align="center">
-    <img src="https://github.com/israel-nogueira/sweet-thumb/blob/d45bf1c328d2107368c9e2838858c7845a1fe5f8/src/10.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/d45bf1c328d2107368c9e2838858c7845a1fe5f8/src/10.png"/>
 </p>
