@@ -59,9 +59,9 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
     ASAAS_APIKEY=ASAAS_APIKEY_SANDBOX # ASAAS_APIKEY_SANDBOX | ASAAS_APIKEY_PRODUCAO
     
 ```
->ATENÇÃO!
->Todas as funçôes dessa classe retornam todos os dados em formato ``JSON``<br>
->que o end-point ASAAS retorna.<br> 
+>ATENÇÃO!<br> 
+>Todas as funções dessa classe retornam os dados em formato ``JSON``<br>
+>sem tratamentos, da mesma forma que o end-point ASAAS nos retorna.<br> 
 >Isso para que você possa integrar tranquilamente com as suas funções internas;
 
 ## GERANDO UMA COBRANÇA<br/>
