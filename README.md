@@ -4,17 +4,15 @@
 
 <p align="center">
     <a href="#instalação" target="_Self">Instalação</a> |
-    <a href="#exemplos-de-uso" target="_Self">Exemplos de Uso</a> |
-    <a href="#conversão-de-arquivos" target="_Self">Conversão</a> |
-    <a href="#print-imagem-no-browser" target="_Self">Print no browser</a> |
-    <a href="#thumb-redondo" target="_Self">Thumb Redondo</a><br>
-    <a href="#paleta-de-cores" target="_Self">Paleta de Cores</a> |
-    <a href="#cor-predominante-de-uma-imagem" target="_Self">Cor predominante</a> |
-    <a href="#placeholder" target="_Self">Placeholder</a> |
-    <a href="#placeholder-blur-de-uma-imagem" target="_Self">Placeholder com Blur</a>  |
-    <a href="#add-texto-por-cima-de-uma-imagem" target="_Self">Add Textos</a> |
-    <a href="#mesclando-imagens" target="_Self">Mesclando imagens</a> |
-    <a href="#processa-uma-imagem" target="_Self"> uma imagens</a> |
+    <a href="#admin" target="_Self">Admin</a> |
+    <a href="#conversão-de-arquivos" target="_Self">Assinaturas</a> |
+    <a href="#print-imagem-no-browser" target="_Self">Clientes</a> |
+    <a href="#thumb-redondo" target="_Self">Cobranças</a><br>
+    <a href="#paleta-de-cores" target="_Self">Links de cobrança</a> |
+    <a href="#cor-predominante-de-uma-imagem" target="_Self">PIX</a> |
+    <a href="#placeholder" target="_Self">Sub-Clientes</a> |
+    <a href="#placeholder-blur-de-uma-imagem" target="_Self">Sub Contas</a> |
+    <a href="#processa-uma-imagem" target="_Self"> WebHook</a>
 </p>
 <p align="center">
     <a href="https://packagist.org/packages/israel-nogueira/api-asaas">
