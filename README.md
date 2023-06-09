@@ -40,15 +40,13 @@ Instale via composer.
 Crie um arquivo na raiz do projeto ``.env`` e coloque as seguintes informações:
 ```env
 
-    #######################
-    ###### API ASAAS ######
-    #######################
+    # E-mail da pessoa responsável pelo seu suporte ASAAS 
+    ASAAS_NOME_DO_SUPORTE=Leticia Schmitt
+    ASAAS_EMAIL_DO_SUPORTE=leticia.schmitt.rocha@asaas.intercom-mail.com
 
-    ASAAS_NOME_DO_SUPORTE=Maria José
-    ASAAS_EMAIL_DO_SUPORTE=mariajose@gmail.com
-
+    # Aqui são os dados de acesso da sua conta principal do ASAAS
     ASAAS_EMAIL_CONTA_PAI=exemplo@gmail.com
-    ASAAS_SENHA_CONTA_PAI=*****
+    ASAAS_SENHA_CONTA_PAI=minha-senha-123
 
     ASAAS_SANDBOX="https://sandbox.asaas.com"
     ASAAS_PRODUCAO="https://www.asaas.com"
@@ -56,6 +54,7 @@ Crie um arquivo na raiz do projeto ``.env`` e coloque as seguintes informações
     ASAAS_APIKEY_SANDBOX="___APIKEY___"
     ASAAS_APIKEY_PRODUCAO="___APIKEY___"
 
+    # É aqui que você vai habilitar o ambiente de produção ou teste
     ASAAS_AMBIENTE=ASAAS_SANDBOX  # ASAAS_SANDBOX | ASAAS_PRODUCAO
     ASAAS_APIKEY=ASAAS_APIKEY_SANDBOX # ASAAS_APIKEY_SANDBOX | ASAAS_APIKEY_PRODUCAO
     
