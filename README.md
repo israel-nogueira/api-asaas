@@ -37,7 +37,7 @@ Instale via composer.
     composer require israel-nogueira/api-asaas
 ```
 
-Crie um arquivo na raiz do projeto ``.env`` e coloque as seguintes informações:
+Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguintes informações:
 ```env
 
     # E-mail da pessoa responsável pelo seu suporte ASAAS 
@@ -59,11 +59,13 @@ Crie um arquivo na raiz do projeto ``.env`` e coloque as seguintes informações
     ASAAS_APIKEY=ASAAS_APIKEY_SANDBOX # ASAAS_APIKEY_SANDBOX | ASAAS_APIKEY_PRODUCAO
     
 ```
+>ATENÇÃO!
+>Todas as funçôes dessa classe retornam todos os dados em formato ``JSON``<br>
+>que o end-point ASAAS retorna.<br> 
+>Isso para que você possa integrar tranquilamente com as suas funções internas;
 
 ## GERANDO UMA COBRANÇA<br/>
 
-Quando geramos uma nova cobrança, a função ``asaas::novaCobranca`` retorna todos os dados em formato ``JSON``<br>
-para que você possa integrar tranquilamente com as suas funções;
 ```php
 
 <?php
