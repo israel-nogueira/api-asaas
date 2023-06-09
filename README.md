@@ -37,9 +37,33 @@ Instale via composer.
     composer require israel-nogueira/api-asaas
 ```
 
+Crie um arquivo na raiz do projeto ``.env`` e coloque as seguintes informações:
+```env
+
+    #######################
+    ###### API ASAAS ######
+    #######################
+
+    ASAAS_NOME_DO_SUPORTE=Maria José
+    ASAAS_EMAIL_DO_SUPORTE=mariajose@gmail.com
+
+    ASAAS_EMAIL_CONTA_PAI=exemplo@gmail.com
+    ASAAS_SENHA_CONTA_PAI=*****
+
+    ASAAS_SANDBOX="https://sandbox.asaas.com"
+    ASAAS_PRODUCAO="https://www.asaas.com"
+
+    ASAAS_APIKEY_SANDBOX="___APIKEY___"
+    ASAAS_APIKEY_PRODUCAO="___APIKEY___"
+    ASAAS_AMBIENTE=ASAAS_SANDBOX
+    ASAAS_APIKEY=ASAAS_APIKEY_SANDBOX
+    
+```
+
 ## GERANDO UMA COBRANÇA<br/>
 
-Quando geramos uma nova cobrança, a função ``asaas::novaCobranca`` retorna todos os dados em formato ``JSON``
+Quando geramos uma nova cobrança, a função ``asaas::novaCobranca`` retorna todos os dados em formato ``JSON``<br>
+para que você possa integrar tranquilamente com as suas funções;
 ```php
 
 <?php
@@ -107,3 +131,23 @@ Quando geramos uma nova cobrança, a função ``asaas::novaCobranca`` retorna to
 ?>
 ```
 
+```php
+ <?
+ 	
+			api_asaas::novoCliente([
+				'name'=>'José de Abreu',
+				'email'=>'jose@feats.com.br',
+				'phone'=>'5541000000000',
+				'mobilePhone'=>'5541000000000',
+				'cpfCnpj'=>'43856881174',
+				'company'=>'Empresa do zé',
+				'postalCode'=>'81470275',
+				'addressNumber'=>'72',
+				'complement'=>'23',
+				'externalReference'=>'4567',
+				'additionalEmails'=>'',
+				'municipalInscription'=>'',
+				'stateInscription'=>'',
+				'observations'=>'',
+			])
+```
