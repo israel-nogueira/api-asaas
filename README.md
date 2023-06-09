@@ -37,16 +37,16 @@ Instale via composer.
     composer require israel-nogueira/api-asaas
 ```
 
-## EXEMPLOS DE USO<br/>
+## GERANDO UMA COBRANÇA<br/>
 
-GERANDO UMA COBRANÇA
+Quando geramos uma nova cobrança, a função ``asaas::novaCobranca`` retorna todos os dados em formato ``JSON``
 ```php
 
 <?php
     include "vendor\autoload.php";
 	use IsraelNogueira\SweetThumb\sweet;
 
-    asaas::novaCobranca([
+  $nova_cobranca = asaas::novaCobranca([
         "customer"=> "cus_000005158308",    // Esse dado vem no cadastro do usuario
         "billingType"=> "BOLETO",           // BOLETO | CREDIT_CARD | PIX |  UNDEFINED
         "dueDate"=> "2023-03-01",           // Vencimento
@@ -99,9 +99,10 @@ GERANDO UMA COBRANÇA
             "phone"=> "4738010919",
             "mobilePhone"=> "47998781877"
         ]
-    ])
+    ]);
     
-
+    // Faça o que quiser agora com os retornos da API:
+    meu_sistema::cadastra_nova_cobranca( $nova_cobranca );
 
 ?>
 ```
