@@ -162,3 +162,77 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
 
 
 ```
+
+## ATUALIZAÇÃO CADASTRAL
+```php
+ <?
+    include "vendor\autoload.php";
+    use IsraelNogueira\Asaas\asaas;
+    use lib\cors\meu_sistema;
+
+
+    $novo_cliente   = asaas::setDadosComerciais([
+                            "personType"=> "JURIDICA",
+                            "cpfCnpj"=> "66625514000140",
+                            "birthDate"=> null,
+                            "companyType"=> "MEI",
+                            "email"=> "emaildaempresa@gmail.com",
+                            "phone"=> "11 32300606",
+                            "mobilePhone"=> "11 988451155",
+                            "postalCode"=> "89223005",
+                            "address"=> "Av. Rolf Wiest",
+                            "addressNumber"=> "659",
+                            "complement"=> "Sala 201",
+                            "province"=> "Bom Retiro",
+                        ])
+
+    // Faça o que quiser agora com os retornos da API:
+    meu_sistema::cadastra_novo_cliente( $novo_cliente );
+
+
+```
+
+## SUB-CONTAS
+```php
+ <?
+    include "vendor\autoload.php";
+    use IsraelNogueira\Asaas\asaas;
+    use lib\cors\meu_sistema;
+
+    /*
+    |-------------------------------------------------
+    | RETORNA JSON COM A LISTA DE SUB-CONTAS
+    |-------------------------------------------------
+    */
+    $_LISTA = asaas::listaSubContas();
+
+    /*
+    |-------------------------------------------------
+    | RETORNA JSON COM DETALHES DA CONTA REQUIRIDA
+    |-------------------------------------------------
+    */
+    $_DADOS =   asaas::getSubConta($_UID);
+
+
+    /*
+    |-------------------------------------------------
+    | CRIA UMA NOVA SUB-CONTA E RETORNA OS DADOS
+    |-------------------------------------------------
+    */
+    $_RETORNO = asaas::novaSubConta([
+                    "name"=>"Nome Completo Do Cliente",
+                    "email"=>"myaccount@example.com",
+                    "cpfCnpj"=>"15571534000145",
+                    "birthDate"=>"2012-05-04",
+                    "companyType"=>"LIMITED",//MEI | LIMITED | INDIVIDUAL | ASSOCIATION
+                    "phone"=>"",
+                    "mobilePhone"=>"45 9 9354 4738",
+                    "address"=>"Rua das Laranjeiras",
+                    "addressNumber"=>"41",
+                    "complement"=>"Sala 502",
+                    "province"=>"Bairro do Limoeiro",
+                    "postalCode"=>"50050550"
+                ])
+
+
+```
