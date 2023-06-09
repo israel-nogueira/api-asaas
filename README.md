@@ -59,20 +59,21 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
     ASAAS_APIKEY=ASAAS_APIKEY_SANDBOX # ASAAS_APIKEY_SANDBOX | ASAAS_APIKEY_PRODUCAO
     
 ```
->ATENÇÃO!<br> 
+>**! ATENÇÃO !**<br> 
 >Todas as funções dessa classe retornam os dados em formato ``JSON``<br>
 >sem tratamentos, da mesma forma que o end-point ASAAS nos retorna.<br> 
 >Isso para que você possa integrar tranquilamente com as suas funções internas;
 
-## GERANDO UMA COBRANÇA<br/>
 
+## GERANDO UMA NOVA COBRANÇA
 ```php
 
 <?php
     include "vendor\autoload.php";
-	use IsraelNogueira\SweetThumb\sweet;
-
-  $nova_cobranca = asaas::novaCobranca([
+	use IsraelNogueira\Asaas\asaas;
+    use lib\cors\meu_sistema;
+    
+    $nova_cobranca = asaas::novaCobranca([
         "customer"=> "cus_000005158308",    // Esse dado vem no cadastro do usuario
         "billingType"=> "BOLETO",           // BOLETO | CREDIT_CARD | PIX |  UNDEFINED
         "dueDate"=> "2023-03-01",           // Vencimento
@@ -132,24 +133,32 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
 
 ?>
 ```
-
+## CADASTRANDO UM NOVO CLIENTE
 ```php
  <?
- 	
-			api_asaas::novoCliente([
-				'name'=>'José de Abreu',
-				'email'=>'jose@feats.com.br',
-				'phone'=>'5541000000000',
-				'mobilePhone'=>'5541000000000',
-				'cpfCnpj'=>'43856881174',
-				'company'=>'Empresa do zé',
-				'postalCode'=>'81470275',
-				'addressNumber'=>'72',
-				'complement'=>'23',
-				'externalReference'=>'4567',
-				'additionalEmails'=>'',
-				'municipalInscription'=>'',
-				'stateInscription'=>'',
-				'observations'=>'',
-			])
+    include "vendor\autoload.php";
+	use IsraelNogueira\Asaas\asaas;
+	use lib\cors\meu_sistema;
+
+    $novo_cliente   = asaas::novoCliente([
+                        'name'=>'José de Abreu',
+                        'email'=>'jose@feats.com.br',
+                        'phone'=>'5541000000000',
+                        'mobilePhone'=>'5541000000000',
+                        'cpfCnpj'=>'43856881174',
+                        'company'=>'Empresa do zé',
+                        'postalCode'=>'81470275',
+                        'addressNumber'=>'72',
+                        'complement'=>'23',
+                        'externalReference'=>'4567',
+                        'additionalEmails'=>'',
+                        'municipalInscription'=>'',
+                        'stateInscription'=>'',
+                        'observations'=>'',
+                    ])
+
+    // Faça o que quiser agora com os retornos da API:
+    meu_sistema::cadastra_novo_cliente( $novo_cliente );
+
+
 ```
