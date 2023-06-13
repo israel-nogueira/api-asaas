@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/israel-nogueira/api-asaas/blob/47408bfa966f5f070078a9f9ad790526ed708efc/src/top_readme.png"/>
+    <img src="https://github.com/israel-nogueira/asaas/blob/47408bfa966f5f070078a9f9ad790526ed708efc/src/top_readme.png"/>
 </p>
 
 <p align="center">
@@ -15,11 +15,11 @@
     <a href="#processa-uma-imagem" target="_Self"> WebHook</a>
 </p>
 <p align="center">
-    <a href="https://packagist.org/packages/israel-nogueira/api-asaas">
-        <img src="https://poser.pugx.org/israel-nogueira/api-asaas/v/stable.svg">
+    <a href="https://packagist.org/packages/israel-nogueira/asaas">
+        <img src="https://poser.pugx.org/israel-nogueira/asaas/v/stable.svg">
     </a>
-    <a href="https://packagist.org/packages/israel-nogueira/api-asaas"><img src="https://poser.pugx.org/israel-nogueira/api-asaas/downloads"></a>
-    <a href="https://packagist.org/packages/israel-nogueira/api-asaas"><img src="https://poser.pugx.org/israel-nogueira/api-asaas/license.svg"></a>
+    <a href="https://packagist.org/packages/israel-nogueira/asaas"><img src="https://poser.pugx.org/israel-nogueira/asaas/downloads"></a>
+    <a href="https://packagist.org/packages/israel-nogueira/asaas"><img src="https://poser.pugx.org/israel-nogueira/asaas/license.svg"></a>
 </p>
 
 <p align="center">
@@ -34,7 +34,7 @@
 Instale via composer.
 
 ```plaintext
-    composer require israel-nogueira/api-asaas
+    composer require israel-nogueira/asaas
 ```
 
 Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguintes informações:
