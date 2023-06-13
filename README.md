@@ -4,15 +4,16 @@
 
 <p align="center">
     <a href="#instalação" target="_Self">Instalação</a> |
-    <a href="#admin" target="_Self">Admin</a> |
-    <a href="#conversão-de-arquivos" target="_Self">Assinaturas</a> |
-    <a href="#print-imagem-no-browser" target="_Self">Clientes</a> |
-    <a href="#thumb-redondo" target="_Self">Cobranças</a><br>
+    <a href="#gerando-uma-nova-cobrança" target="_Self">Cobranças</a><br>
+    <a href="#atualização-cadastral" target="_Self">Atualização Cadastral</a> |
+    <a href="#sub-clientes" target="_Self">Sub clientes</a> |
+    <a href="#sub-contas" target="_Self">Sub contas</a> |
+    <a href="#assinatura" target="_Self">Assinatura</a> 
+    <!-- |
     <a href="#paleta-de-cores" target="_Self">Links de cobrança</a> |
     <a href="#cor-predominante-de-uma-imagem" target="_Self">PIX</a> |
-    <a href="#placeholder" target="_Self">Sub-Clientes</a> |
     <a href="#placeholder-blur-de-uma-imagem" target="_Self">Sub Contas</a> |
-    <a href="#processa-uma-imagem" target="_Self"> WebHook</a>
+    <a href="#processa-uma-imagem" target="_Self"> WebHook</a> -->
 </p>
 <p align="center">
     <a href="https://packagist.org/packages/israel-nogueira/asaas">
