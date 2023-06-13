@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://github.com/israel-nogueira/asaas/blob/47408bfa966f5f070078a9f9ad790526ed708efc/src/top_readme.png"/>
+    <img src="https://github.com/israel-nogueira/api-asaas/blob/47408bfa966f5f070078a9f9ad790526ed708efc/src/top_readme.png"/>
 </p>
 
 <p align="center">
