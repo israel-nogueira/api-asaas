@@ -1,7 +1,7 @@
 <?
 
 namespace IsraelNogueira\Asaas;
-
+use Exception;
 trait admin{
 
     //######################################################################################
@@ -20,7 +20,7 @@ trait admin{
 				$_CURLFile = curl_file_create($_PARAM['logoFile'], mime_content_type($_PARAM['logoFile']), basename($_PARAM['logoFile']));
 				$_PARAM['logoFile'] = $_CURLFile;
 			}
-			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/myAccount/paymentCheckoutConfig/");
+			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/myAccount/paymentCheckoutConfig/");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -39,7 +39,7 @@ trait admin{
 		static public function getThemeLink() {try{
 			self::verifyEnv();
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/myAccount/paymentCheckoutConfig/");
+			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/myAccount/paymentCheckoutConfig/");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", "access_token:" . getEnv(getEnv('ASAAS_APIKEY'))));

@@ -15,7 +15,7 @@ trait subcontas{
 			if(is_null($_PARAM)) throw new Exception("Param is null em asaas::novaSubConta", 1);
 			//ˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑ
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/accounts");
+				curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/accounts");
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 				curl_setopt($ch, CURLOPT_HEADER, FALSE);
 				curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -35,7 +35,7 @@ trait subcontas{
 			$_QUERY = (!is_null($_PARAM)) ? "?".http_build_query($_PARAM):"";
 
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/accounts".$_QUERY);
+			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/accounts".$_QUERY);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", "access_token:" . getEnv(getEnv('ASAAS_APIKEY'))));
@@ -51,7 +51,7 @@ trait subcontas{
 			self::verifyEnv();
 			if(is_null($_ID)) throw new Exception("Param is null em classe::methodo", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/accounts?id=$_ID");
+			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/accounts?id=$_ID");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", "access_token:" . getEnv(getEnv('ASAAS_APIKEY'))));
@@ -68,7 +68,7 @@ trait subcontas{
 			self::verifyEnv();
 			if(is_null($_ID)) throw new Exception("Param is null em classe::methodo", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/accounts/redefineApiKey");
+			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/accounts/redefineApiKey");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array( "Content-Type: application/json", "access_token:" . getEnv(getEnv('ASAAS_APIKEY')) ));

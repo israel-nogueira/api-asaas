@@ -12,7 +12,7 @@ trait pix{
 			self::verifyEnv();
 			if(is_null($_UID)) throw new Exception("Param is null em asaas::getTransactionPIX", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/pix/transactions?id=".$_UID);
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/pix/transactions?id=".$_UID);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch,CURLOPT_HTTPHEADER, array( "Content-Type: application/json","access_token:".getEnv(getEnv('ASAAS_APIKEY'))));
@@ -29,7 +29,7 @@ trait pix{
 			if(!is_null($_PARAM) && $_PARAM==[] ) throw new Exception("Param is null em asaas::getListTransactionPIX", 1);
 			$_QUERY = (!is_null($_PARAM)) ? "?".http_build_query($_PARAM):"";
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/pix/transactions".$_QUERY);
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/pix/transactions".$_QUERY);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch,CURLOPT_HTTPHEADER, array( "Content-Type: application/json","access_token:".getEnv(getEnv('ASAAS_APIKEY'))));
@@ -44,7 +44,7 @@ trait pix{
 		static public function novaChavePix($_FILTER=['type'=>'EVP']) {try{
 			self::verifyEnv();
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/pix/addressKeys");
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/pix/addressKeys");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_POST, true);
@@ -62,7 +62,7 @@ trait pix{
 			self::verifyEnv();
 			if(is_null($_ID)) throw new Exception("ID is null em asaas::getChavePix", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/pix/addressKeys/".$_ID);
+			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/pix/addressKeys/".$_ID);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array( "Content-Type: application/json","access_token:".getEnv(getEnv('ASAAS_APIKEY'))));
@@ -80,7 +80,7 @@ trait pix{
 			if(!is_null($_PARAM) && $_PARAM==[] ) 	throw new Exception("PARAMETROS DE PESQUISA INEXISTENTES OU INVÁLIDOS em asaas::listaChavesPix", 1);
 			$_QUERY = (!is_null($_PARAM)) ? "?".http_build_query($_PARAM):"";
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/pix/addressKeys");
+			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/pix/addressKeys");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array( "access_token:".getEnv(getEnv('ASAAS_APIKEY'))));
@@ -96,7 +96,7 @@ trait pix{
 			self::verifyEnv();
 			if(is_null($_ID)) throw new Exception("ID is null em asaas::deleteChavePix", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/pix/addressKeys/".$_ID);
+			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/pix/addressKeys/".$_ID);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -115,7 +115,7 @@ trait pix{
 			if(empty($_PARAM['description']))   throw new Exception("'description' is null em asaas::qrStatic", 1);
 			if(empty($_PARAM['value']))         throw new Exception("'value' is null em asaas::qrStatic", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/pix/qrCodes/static");
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/pix/qrCodes/static");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -134,7 +134,7 @@ trait pix{
 			if(is_null($_PLAYLOAD)) throw new Exception("Param is null em asaas::QRDecode", 1);
 			//ˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑ
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/pix/qrCodes/decode");
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/pix/qrCodes/decode");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_POST, true);
@@ -153,7 +153,7 @@ trait pix{
 			self::verifyEnv();
 			if(is_null($_PARAM)) throw new Exception("Param is null em classe::methodo", 1);
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/pix/qrCodes/pay");
+				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/pix/qrCodes/pay");
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_HEADER, false);
 				curl_setopt($ch, CURLOPT_POST, true);

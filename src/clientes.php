@@ -23,7 +23,7 @@ trait clientes{
 			if(empty($_PARAM['complement']))								throw new Exception("'complement' is null em asaas::novoCliente", 1);
 			if(empty($_PARAM['externalReference']))							throw new Exception("'externalReference' is null em asaas::novoCliente", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/customers");
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/customers");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_POST, true);
@@ -42,7 +42,7 @@ trait clientes{
 			if(is_null($_UID)) throw new Exception("UID is null em asaas::getCliente", 1);
 			//ˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑ
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/customers/".$_UID);
+				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/customers/".$_UID);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 				curl_setopt($ch, CURLOPT_HEADER, FALSE);
 				curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", "access_token:" . getEnv(getEnv('ASAAS_APIKEY'))));
@@ -60,7 +60,7 @@ trait clientes{
 				$ch = curl_init();
 				if(!is_null($_PARAM) && $_PARAM==[] ) 	throw new Exception("PARAMETROS DE PESQUISA INEXISTENTES OU INVÁLIDOS em asaas::listaCliente", 1);
 				$_QUERY = (!is_null($_PARAM)) ? "?".http_build_query($_PARAM):"";
-				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/customers".$_QUERY);		
+				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/customers".$_QUERY);		
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 				curl_setopt($ch, CURLOPT_HEADER, FALSE);
 				curl_setopt($ch, CURLOPT_HTTPHEADER, array( "access_token:".getEnv(getEnv('ASAAS_APIKEY'))));
@@ -77,7 +77,7 @@ trait clientes{
 			if(is_null($_PARAM))	throw new Exception("\$_PARAM is null em asaas::updateCliente", 1);
 			if(is_null($_UID))		throw new Exception("\$_UID is null em asaas::updateCliente", 1);
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/customers/".$_UID);
+				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/customers/".$_UID);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 				curl_setopt($ch, CURLOPT_HEADER, FALSE);
 				curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -96,7 +96,7 @@ trait clientes{
 			if(is_null($_UID)) throw new Exception("Param is null em classe::methodo", 1);
 			//ˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑ
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/customers/".$_UID);
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/customers/".$_UID);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -114,7 +114,7 @@ trait clientes{
 			self::verifyEnv();
 			if(is_null($_PARAM)) throw new Exception("Param is null em classe::methodo", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/creditCard/tokenize");
+			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/creditCard/tokenize");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_POST, true);

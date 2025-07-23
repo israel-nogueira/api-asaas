@@ -1,6 +1,6 @@
 <?
 namespace IsraelNogueira\Asaas;
-
+use Exception;
 
 //######################################################################################
 //⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮ LINKS DE PAGAMENTO ⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮
@@ -12,21 +12,41 @@ trait links{
 	//ˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑ
 	//	LINK DE PAGAMENTOS
 	//ˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑ
-		static public function novoLink($_PARAM=null) {try{
-			self::verifyEnv();
-			if(is_null($_PARAM)) throw new Exception("Param is null em asaas::novoLink", 1);
-			//ˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑ
-				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks");
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-				curl_setopt($ch, CURLOPT_HEADER, FALSE);
-				curl_setopt($ch, CURLOPT_POST, TRUE);
-				curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($_PARAM));
-				curl_setopt($ch,CURLOPT_HTTPHEADER, array( "Content-Type: application/json","access_token:".getEnv(getEnv('ASAAS_APIKEY'))));
-				$response = curl_exec($ch);
-				curl_close($ch);
-				return json_decode($response,true);
-		} catch (\Throwable $ERROR) {throw new Exception($ERROR->getMessage());}}
+		static public function novoLink($_PARAM = null) {
+			try {
+				self::verifyEnv();
+				if (is_null($_PARAM)) {throw new Exception("Param is null em asaas::novoLink", 1);}
+				$curl = curl_init();
+				curl_setopt_array($curl, [
+					CURLOPT_URL            => getEnv(getEnv('ASAAS_AMBIENTE')) . "/v3/paymentLinks",
+					CURLOPT_RETURNTRANSFER => true,
+					CURLOPT_ENCODING       => "",
+					CURLOPT_MAXREDIRS      => 10,
+					CURLOPT_TIMEOUT        => 30,
+					CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+					CURLOPT_CUSTOMREQUEST  => "POST",
+					CURLOPT_POSTFIELDS     => json_encode($_PARAM),
+					CURLOPT_HTTPHEADER     => [
+						"User-Agent: ForjadosNoFogo/1.0",
+						"accept: application/json",
+						"access_token: " . getEnv(getEnv('ASAAS_APIKEY')),
+						"content-type: application/json",
+					],
+				]);
+				$response = curl_exec($curl);
+				$err      = curl_error($curl);
+				curl_close($curl);
+				if ($err) {
+					throw new Exception('cURL Error: ' . curl_error($curl));
+				} else {
+					curl_close($curl);
+					return json_decode($response, true);
+				}
+			} catch (\Throwable $ERROR) {
+				throw new Exception($ERROR->getMessage());
+			}
+		}
+
 
 	//ˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑ
 	//	RETORNA UM LINK DE PAGAMENTO
@@ -35,7 +55,7 @@ trait links{
 			self::verifyEnv();
 			if(is_null($_UID)) throw new Exception("UID is null em asaas::getLink", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks/".$_UID);
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/paymentLinks/".$_UID);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch,CURLOPT_HTTPHEADER, array( "Content-Type: application/json","access_token:".getEnv(getEnv('ASAAS_APIKEY'))));
@@ -52,7 +72,7 @@ trait links{
 			if(is_null($_UID))		throw new Exception("UID is null em asaas::updateLink", 1);
 			if(is_null($_PARAM))	throw new Exception("PARAM is null em asaas::updateLink", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks/".$_UID);
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/paymentLinks/".$_UID);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
@@ -71,7 +91,7 @@ trait links{
 			if(!is_null($_PARAM) && $_PARAM==[] ) 	throw new Exception("PARAMETROS DE PESQUISA INEXISTENTES OU INVÁLIDOS em asaas::listaLinks", 1);
 				$_QUERY = (!is_null($_PARAM)) ? "?".http_build_query($_PARAM):"";
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks".$_QUERY);
+				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/paymentLinks".$_QUERY);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 				curl_setopt($ch, CURLOPT_HEADER, FALSE);
 				curl_setopt($ch, CURLOPT_HTTPHEADER, array("access_token:" . getEnv(getEnv('ASAAS_APIKEY'))));
@@ -87,7 +107,7 @@ trait links{
 			self::verifyEnv();
 			if(is_null($_UID)) throw new Exception("UID is null em asaas::deleteLink", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks/".$_UID);
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/paymentLinks/".$_UID);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_HEADER, false);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -104,7 +124,7 @@ trait links{
 			self::verifyEnv();
 			if(is_null($_UID)) throw new Exception("UID is null em asaas::restauraLink", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks/$_UID/restore");
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/paymentLinks/$_UID/restore");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_POST, TRUE);
@@ -123,7 +143,7 @@ trait links{
 			if(is_null($_IMG)) throw new Exception("IMG is null em asaas::insertImageLink", 1);
 			$_CURLFile = curl_file_create($_IMG, mime_content_type($_IMG), basename($_IMG));
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks/".$_UID."/images");
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/paymentLinks/".$_UID."/images");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
 			curl_setopt($ch,CURLOPT_ENCODING , '');
@@ -152,7 +172,7 @@ trait links{
 			if(is_null($imageId)) throw new Exception("IMG_ID is null em asaas::getImageLink", 1);
 			//ˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑ
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks/$paymentLinkId/images/$imageId");
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/paymentLinks/$paymentLinkId/images/$imageId");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: multipart/form-data","access_token:".getEnv(getEnv('ASAAS_APIKEY'))));	
@@ -168,7 +188,7 @@ trait links{
 			self::verifyEnv();
 			if(is_null($_ID)) throw new Exception("Param is null em asaas::listaImgLink", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks/".$_ID."/images");
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/paymentLinks/".$_ID."/images");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array("access_token:" . getEnv(getEnv('ASAAS_APIKEY'))));
@@ -185,7 +205,7 @@ trait links{
 			self::verifyEnv();
 			if(is_null($_ID)) throw new Exception("Param is null em asaas::deleteImgLink", 1);
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks/".$_ID."/images");
+				curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/paymentLinks/".$_ID."/images");
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_HEADER, false);
 				curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
@@ -203,7 +223,7 @@ trait links{
 			if(is_null($ID_LINK)) throw new Exception("ID_LINK is null em asaas::setPrincipalImgLink", 1);
 			if(is_null($_ID)) throw new Exception("ID is null em asaas::setPrincipalImgLink", 1);
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/paymentLinks/$ID_LINK/images/$_ID/setAsMain");
+			curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/paymentLinks/$ID_LINK/images/$_ID/setAsMain");
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_POST, TRUE);

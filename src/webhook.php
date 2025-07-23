@@ -15,7 +15,7 @@ trait webhook{
 			if(is_null($_PATH)) throw new Exception("PATH is null em asaas::setWebhook", 1);
 			if(is_null($_PARAM)) throw new Exception("Param is null em asaas::setWebhook", 1);
 				$ch = curl_init();
-				curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/".$_PATH);
+				curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/".$_PATH);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_HEADER, false);
 				curl_setopt($ch, CURLOPT_POST, true);
@@ -93,7 +93,7 @@ trait webhook{
 		static public function getWebhook($PATH) {try{
 			self::verifyEnv();
 			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/api/v3/".$PATH);
+			curl_setopt($ch, CURLOPT_URL,getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/".$PATH);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 			curl_setopt($ch, CURLOPT_HEADER, FALSE);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type: application/json", "access_token:" . getEnv(getEnv('ASAAS_APIKEY'))));

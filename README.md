@@ -299,6 +299,45 @@ Crie um arquivo **NA RAIZ** do projeto ``var/www/html/.env`` e coloque as seguin
 
 ```
 
+## CARTÃO DE CRÉDITO
+```php
+ <?
+    include "vendor\autoload.php";
+    use IsraelNogueira\Asaas\asaas;
+    use lib\cors\meu_sistema;
+
+    asaas::tokenizeCreditCard([
+        "customer"=> "cus_xxx",
+        "creditCard"=> [
+            "holderName"=> "João Silva",
+            "number"=> "5162306219378829",
+            "expiryMonth"=> "05",
+            "expiryYear"=> "2024",
+            "ccv"=> "318"
+        ],
+        "creditCardHolderInfo"=> [
+            "name"=> "João Silva",
+            "email"=> "joao@example.com",
+            "cpfCnpj"=> "12345678909",
+            "postalCode"=> "89223-005",
+            "addressNumber"=> "100",
+            "addressComplement"=> null,
+            "phone"=> "4740000000",
+            "mobilePhone"=> "47999999999"
+        ],
+        "remoteIp"=> "186.123.45.67"
+    ]);
+?>
+```
+# Retorna
+```json
+        {
+            "creditCardToken": "76496073-536f-4835-80db-c45d00f33695",
+            "creditCardNumber": "8829",
+            "creditCardBrand": "MASTER"
+        } 
+```
+
 ## ASSINATURA
 ```php
  <?
