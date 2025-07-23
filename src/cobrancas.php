@@ -1,6 +1,6 @@
 <?
 namespace IsraelNogueira\Asaas;
-
+use Exception;
 //#####################################################################################
 //⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮ COBRANÇAS ⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮⋮
 //#####################################################################################
@@ -23,6 +23,23 @@ trait cobrancas{
 			curl_close($ch);
 			return json_decode($response, true);
 		} catch (\Throwable $ERROR) {throw new Exception($ERROR->getMessage());}}
+
+		static public function verificaPagamento($id = null){
+			try {
+				self::verifyEnv();
+				if(!$id){ throw new Exception("ID da cobrança não informado."); }
+				$ch = curl_init();
+				curl_setopt($ch, CURLOPT_URL, getEnv(getEnv('ASAAS_AMBIENTE'))."/v3/payments/{$id}");
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($ch, CURLOPT_HEADER, false);
+				curl_setopt($ch, CURLOPT_HTTPHEADER, array( "Content-Type: application/json", "access_token:" . getEnv(getEnv('ASAAS_APIKEY')) ));
+				$response = curl_exec($ch);
+				curl_close($ch);
+				return json_decode($response, true);
+			} catch (\Throwable $ERROR) {
+				throw new Exception($ERROR->getMessage());
+			}
+		}
 
 		//ˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑˑ
 		//	TRANSFERENCIA

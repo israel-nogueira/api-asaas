@@ -8,7 +8,7 @@ class asaas{
 	
 	|--------------------------------------------------------------------------- 
 	*/
-		use	admin, assinatura, clientes, cobrancas,
+		use	admin, assinatura, clientes, cobrancas ,cartao,escrow,
 			links, pix, subclientes, subcontas, webhook;
 
 	/*
